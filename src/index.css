@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+/* Palette du site (thème sombre, accent violet) */
+@theme {
+  --color-ink: #0a0a0f;
+  --color-surface: #14141c;
+  --color-surface-2: #1e1e2b;
+  --color-line: #2a2a3a;
+  --color-accent: #8b5cf6;
+  --color-accent-soft: #a78bfa;
+  --color-muted: #9aa0b4;
+
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px; /* pour que les ancres ne passent pas sous la navbar */
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-ink);
+  color: #f4f4f8;
+  -webkit-font-smoothing: antialiased;
+}
