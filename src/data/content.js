@@ -60,7 +60,7 @@ export const CREATIONS = [
     },
     badge: '🏆 3ᵉ place',
     title: "Concours d'editing PepeChicken",
-    text: "Vidéo d'editing dynamique qui m'a valu la 3ème place du concours PepeChicken. Rythme, effets et timing au service de l'impact.",
+    text: "Vidéo d'editing dynamique qui m'a valu la 3ème place du concours PepeChicken.",
   },
   {
     // Vidéo intégrée via l'embed officiel TikTok (cf. composant TikTokEmbed).
@@ -71,6 +71,6 @@ export const CREATIONS = [
     },
     badge: 'Client',
     title: 'Vidéo de lancement — créateur',
-    text: "Montage dynamique pour le lancement d'un créateur sur les réseaux : rythme, énergie et accroche pensés pour marquer dès la première publication.",
+    text: "Montage dynamique pour le lancement d'un créateur sur les réseaux.",
   },
 ];
