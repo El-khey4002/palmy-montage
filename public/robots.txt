@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# ⚠️ Remplace le domaine ci-dessous par ton vrai domaine après le déploiement.
+Sitemap: https://yanislaval.fr/sitemap.xml
