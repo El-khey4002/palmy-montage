@@ -1,5 +1,5 @@
 import { Mail, Phone } from 'lucide-react';
-import { CONTACT } from '../data/content';
+import { CONTACT, mailLinkProps } from '../data/content';
 import Container from './ui/Container';
 import ContactForm from './ContactForm';
 import { SocialLinks } from './SocialMedia';
@@ -28,7 +28,7 @@ export default function Contact() {
 
             <div className="mt-8 flex flex-col gap-3">
               <a
-                href={`mailto:${CONTACT.email}`}
+                {...mailLinkProps(CONTACT.email)}
                 className="group inline-flex items-center gap-3 text-ink transition-colors hover:text-primary"
               >
                 <span className="flex h-10 w-10 items-center justify-center rounded-full bg-surface-strong text-ink transition-colors group-hover:text-primary">

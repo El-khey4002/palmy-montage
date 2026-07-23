@@ -15,7 +15,43 @@ export const CONTACT = {
   tiktok: 'https://www.tiktok.com/@palmyedit',
 };
 
-export const DEVIS_LINK = `mailto:${CONTACT.email}?subject=Demande%20de%20devis`;
+/**
+ * Détecte un appareil mobile (téléphone/tablette), où les liens `mailto:`
+ * ouvrent de façon fiable l'app mail par défaut.
+ */
+function isMobileDevice() {
+  if (typeof navigator === 'undefined') return false;
+  return /Android|iPhone|iPad|iPod|Mobile|Windows Phone|BlackBerry/i.test(
+    navigator.userAgent,
+  );
+}
+
+/** Lien de composition Gmail (s'ouvre dans le navigateur, sans logiciel de mail). */
+function gmailCompose(to, subject = '') {
+  const params = new URLSearchParams({ view: 'cm', fs: '1', to });
+  if (subject) params.set('su', subject);
+  return `https://mail.google.com/mail/?${params.toString()}`;
+}
+
+/**
+ * Attributs <a> pour écrire un mail, adaptés à l'appareil :
+ *  - mobile → `mailto:` (ouvre l'app mail native, dans le même onglet) ;
+ *  - ordinateur → fenêtre de composition Gmail dans un nouvel onglet, ce qui
+ *    règle le bug « une page s'ouvre mais rien ne se passe » de `mailto:`
+ *    sur Chrome desktop (aucun logiciel de mail configuré).
+ * Usage : <a {...mailLinkProps(email, sujet)}>…</a>
+ */
+export function mailLinkProps(to, subject = '') {
+  if (isMobileDevice()) {
+    const query = subject ? `?subject=${encodeURIComponent(subject)}` : '';
+    return { href: `mailto:${to}${query}` };
+  }
+  return {
+    href: gmailCompose(to, subject),
+    target: '_blank',
+    rel: 'noopener noreferrer',
+  };
+}
 
 /*
  * Formulaire de contact (Web3Forms) — aucun serveur à héberger.
@@ -24,8 +60,6 @@ export const DEVIS_LINK = `mailto:${CONTACT.email}?subject=Demande%20de%20devis`
  *   1. Va sur https://web3forms.com
  *   2. Entre yanislavalmcm@gmail.com → la clé s'affiche (et est envoyée à cette adresse).
  *   3. Colle-la ci-dessous. Les messages iront alors chez le client.
- *
- * ⚠️ La clé ci-dessous est encore liée à sandel4021@gmail.com — à remplacer.
  */
 export const WEB3FORMS_ACCESS_KEY = '9dd587bd-2c04-4854-b39f-2947a1c294c1';
 
@@ -35,7 +69,7 @@ export const SITE_CREATOR_EMAIL = 'sandel4021@gmail.com';
 export const SOCIALS = [
   { label: 'Instagram', href: CONTACT.instagram, icon: instagramIcon },
   { label: 'WhatsApp', href: CONTACT.whatsapp, icon: whatsappIcon },
-  { label: 'Email', href: `mailto:${CONTACT.email}`, icon: emailIcon },
+  { label: 'Email', email: CONTACT.email, icon: emailIcon },
 ];
 
 export const NAV_LINKS = [

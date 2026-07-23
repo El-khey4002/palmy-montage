@@ -1,4 +1,4 @@
-import { NAV_LINKS, CONTACT, SITE_CREATOR_EMAIL } from '../data/content';
+import { NAV_LINKS, CONTACT, SITE_CREATOR_EMAIL, mailLinkProps } from '../data/content';
 import Container from './ui/Container';
 
 /**
@@ -38,7 +38,7 @@ export default function Footer() {
               Contact
             </span>
             <a
-              href={`mailto:${CONTACT.email}`}
+              {...mailLinkProps(CONTACT.email)}
               className="text-sm text-body transition-colors hover:text-ink"
             >
               {CONTACT.email}
@@ -56,7 +56,7 @@ export default function Footer() {
               Création de site web
             </span>
             <a
-              href={`mailto:${SITE_CREATOR_EMAIL}`}
+              {...mailLinkProps(SITE_CREATOR_EMAIL)}
               className="text-sm font-medium text-primary transition-colors hover:text-primary-active"
             >
               {SITE_CREATOR_EMAIL}

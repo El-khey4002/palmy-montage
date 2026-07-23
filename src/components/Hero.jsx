@@ -1,5 +1,5 @@
 import { ArrowRight, Play, Trophy } from 'lucide-react';
-import { DEVIS_LINK } from '../data/content';
+import { CONTACT, mailLinkProps } from '../data/content';
 import heroImg from '../assets/inspiration.webp';
 import Container from './ui/Container';
 import Button from './ui/Button';
@@ -40,13 +40,18 @@ export default function Hero() {
             Des vidéos qui{' '}
             <span className="text-primary">captent l’attention</span>
           </h1>
-          <p className="mt-6 max-w-md text-base leading-relaxed text-on-dark-soft sm:text-lg">
+          <p className="mt-6 max-w-md text-[16px] sm:text-[40px] lg:text-[21px] leading-relaxed text-on-dark-soft">
             Je conçois et monte des contenus dynamiques pour développer votre
             présence sur les réseaux, bâtir une communauté engagée et attirer
             plus de clients.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Button as="a" href={DEVIS_LINK} variant="primary" size="lg">
+            <Button
+              as="a"
+              {...mailLinkProps(CONTACT.email, 'Demande de devis')}
+              variant="primary"
+              size="lg"
+            >
               Devis gratuit &amp; sans engagement <ArrowRight size={18} />
             </Button>
             <Button as="a" href="#creations" variant="outlineDark" size="lg">

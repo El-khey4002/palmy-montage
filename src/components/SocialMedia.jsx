@@ -1,4 +1,15 @@
-import { SOCIALS } from '../data/content';
+import { SOCIALS, mailLinkProps } from '../data/content';
+
+/**
+ * Attributs <a> d'un réseau : l'entrée Email (`s.email`) s'adapte à l'appareil
+ * (mailto sur mobile, Gmail sur ordinateur) ; les autres sont des liens
+ * externes ouverts dans un nouvel onglet.
+ */
+function socialLinkProps(s) {
+  return s.email
+    ? mailLinkProps(s.email)
+    : { href: s.href, target: '_blank', rel: 'noreferrer' };
+}
 
 /**
  * Rail vertical fixe de réseaux sociaux (affiché à droite sur grand écran).
@@ -10,9 +21,7 @@ export function SocialSidebar() {
       {SOCIALS.map((s) => (
         <a
           key={s.label}
-          href={s.href}
-          target="_blank"
-          rel="noreferrer"
+          {...socialLinkProps(s)}
           aria-label={s.label}
           className="group flex h-11 w-11 items-center justify-center rounded-full border border-hairline bg-canvas shadow-soft transition-colors hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 sm:h-12 sm:w-12"
         >
@@ -37,9 +46,7 @@ export function SocialLinks({ className = '' }) {
       {SOCIALS.map((s) => (
         <a
           key={s.label}
-          href={s.href}
-          target="_blank"
-          rel="noreferrer"
+          {...socialLinkProps(s)}
           aria-label={s.label}
           className="group flex h-11 w-11 items-center justify-center rounded-full border border-hairline bg-canvas transition-colors hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
         >
